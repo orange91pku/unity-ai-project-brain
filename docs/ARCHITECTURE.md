@@ -35,7 +35,8 @@ The Node.js adapter:
 - pins the GitNexus dependency;
 - disables generated skills and agent-instruction injection by default;
 - creates repository-restricted, read-only MCP descriptors;
-- records source fingerprints for focused non-Git roots;
+- records Git revision plus dirty-worktree fingerprints for full indexes;
+- records source-tree fingerprints for focused non-Git roots;
 - translates change envelopes into explicit reindex plans.
 
 ### Unity graph

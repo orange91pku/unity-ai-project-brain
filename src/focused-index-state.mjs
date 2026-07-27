@@ -1,4 +1,5 @@
 import crypto from "node:crypto";
+import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -36,13 +37,22 @@ export function writeFocusedIndexState(
   project,
   stateDirectory = path.join(repositoryRoot, ".state"),
 ) {
+  return writeProjectIndexState(project, stateDirectory);
+}
+
+export function writeProjectIndexState(
+  project,
+  stateDirectory = path.join(repositoryRoot, ".state"),
+) {
   const analysisPath = resolveAnalysisPath(project);
   const state = {
     schemaVersion: 1,
     project: project.name,
     analysisPath,
     indexedAt: new Date().toISOString(),
-    fingerprint: computeSourceFingerprint(analysisPath),
+    fingerprint: project.skipGit
+      ? computeSourceFingerprint(analysisPath)
+      : computeGitFingerprint(project.repositoryPath),
   };
 
   fs.mkdirSync(stateDirectory, { recursive: true });
@@ -55,6 +65,13 @@ export function writeFocusedIndexState(
 }
 
 export function inspectFocusedIndexState(
+  project,
+  stateDirectory = path.join(repositoryRoot, ".state"),
+) {
+  return inspectProjectIndexState(project, stateDirectory);
+}
+
+export function inspectProjectIndexState(
   project,
   stateDirectory = path.join(repositoryRoot, ".state"),
 ) {
@@ -71,7 +88,9 @@ export function inspectFocusedIndexState(
   }
 
   const recorded = JSON.parse(fs.readFileSync(filePath, "utf8"));
-  const currentFingerprint = computeSourceFingerprint(analysisPath);
+  const currentFingerprint = project.skipGit
+    ? computeSourceFingerprint(analysisPath)
+    : computeGitFingerprint(project.repositoryPath);
   return {
     status:
       recorded.analysisPath === analysisPath &&
@@ -86,9 +105,88 @@ export function inspectFocusedIndexState(
   };
 }
 
+export function computeGitFingerprint(repositoryPath) {
+  const repository = path.resolve(repositoryPath);
+  const revision = runGit(repository, ["rev-parse", "HEAD"]).trim();
+  const status = runGit(repository, [
+    "status",
+    "--porcelain=v1",
+    "-z",
+    "--untracked-files=all",
+  ]);
+  const changedPaths = new Set([
+    ...nullDelimitedPaths(
+      runGit(repository, ["diff", "--name-only", "-z"]),
+    ),
+    ...nullDelimitedPaths(
+      runGit(repository, ["diff", "--cached", "--name-only", "-z"]),
+    ),
+    ...nullDelimitedPaths(
+      runGit(repository, [
+        "ls-files",
+        "--others",
+        "--exclude-standard",
+        "-z",
+      ]),
+    ),
+  ]);
+  const hash = crypto.createHash("sha256");
+  hash.update(revision);
+  hash.update("\0");
+  hash.update(status);
+  hash.update("\0");
+  for (const relativePath of [...changedPaths].sort()) {
+    hash.update(relativePath);
+    hash.update("\0");
+    const absolutePath = path.join(
+      repository,
+      ...relativePath.split("/"),
+    );
+    if (fs.existsSync(absolutePath) && fs.statSync(absolutePath).isFile()) {
+      hash.update(fs.readFileSync(absolutePath));
+    } else {
+      hash.update("<deleted>");
+    }
+    hash.update("\0");
+  }
+  return {
+    algorithm: "git-head-worktree-sha256",
+    value: hash.digest("hex"),
+    fileCount: changedPaths.size,
+    revision,
+    dirty: status.length > 0,
+  };
+}
+
 function stateFilePath(project, stateDirectory) {
   const safeName = project.name.replace(/[^a-zA-Z0-9._-]/g, "_");
   return path.join(stateDirectory, `${safeName}.json`);
+}
+
+function runGit(repositoryPath, argumentsToPass) {
+  const result = spawnSync(
+    "git",
+    ["-C", repositoryPath, ...argumentsToPass],
+    {
+      encoding: "utf8",
+      maxBuffer: 16 * 1024 * 1024,
+      shell: false,
+    },
+  );
+  if (result.status !== 0) {
+    throw new Error(
+      result.stderr?.trim() ||
+        `git ${argumentsToPass.join(" ")} failed.`,
+    );
+  }
+  return result.stdout;
+}
+
+function nullDelimitedPaths(value) {
+  return value
+    .split("\0")
+    .filter(Boolean)
+    .map((candidate) => candidate.replaceAll("\\", "/"));
 }
 
 function visitDirectory(sourceRoot, directory, hash, onFile) {

@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import { spawnSync } from "node:child_process";
-import fs from "node:fs";
 import path from "node:path";
 import {
   defaultConfigPath,
@@ -14,8 +13,8 @@ import {
   resolveGitNexusRuntime,
 } from "./gitnexus-command.mjs";
 import {
-  inspectFocusedIndexState,
-  writeFocusedIndexState,
+  inspectProjectIndexState,
+  writeProjectIndexState,
 } from "./focused-index-state.mjs";
 
 const parsed = parseArguments(process.argv.slice(2));
@@ -24,8 +23,8 @@ const project = selectProject(configuration, parsed.projectName);
 
 validateProjectRepository(project);
 
-if (parsed.action === "status" && project.skipGit) {
-  printFocusedStatus(project);
+if (parsed.action === "status") {
+  printProjectStatus(project);
   process.exit(0);
 }
 
@@ -57,10 +56,11 @@ if (result.error) {
   process.exit(2);
 }
 
-if (result.status === 0 && parsed.action === "analyze" && project.skipGit) {
-  const state = writeFocusedIndexState(project);
+if (result.status === 0 && parsed.action === "analyze") {
+  const state = writeProjectIndexState(project);
   console.log(
-    `[project-brain] Recorded ${state.fingerprint.fileCount}-file source fingerprint.`,
+    "[project-brain] Recorded " +
+      `${state.fingerprint.algorithm} source baseline.`,
   );
 }
 
@@ -120,16 +120,28 @@ function validateProjectRepository(projectToValidate) {
     return;
   }
 
-  const gitDirectory = path.join(projectToValidate.repositoryPath, ".git");
-  if (!fs.existsSync(gitDirectory)) {
+  const result = spawnSync(
+    "git",
+    [
+      "-C",
+      projectToValidate.repositoryPath,
+      "rev-parse",
+      "--is-inside-work-tree",
+    ],
+    {
+      encoding: "utf8",
+      shell: false,
+    },
+  );
+  if (result.status !== 0 || result.stdout.trim() !== "true") {
     throw new Error(
-      `Configured repository has no .git directory: '${projectToValidate.repositoryPath}'.`,
+      `Configured repository is not a Git worktree: '${projectToValidate.repositoryPath}'.`,
     );
   }
 }
 
-function printFocusedStatus(projectToInspect) {
-  const result = inspectFocusedIndexState(projectToInspect);
+function printProjectStatus(projectToInspect) {
+  const result = inspectProjectIndexState(projectToInspect);
   console.log(`Repository: ${result.analysisPath}`);
   console.log(`Index: ${result.indexPath}`);
 
@@ -139,7 +151,8 @@ function printFocusedStatus(projectToInspect) {
 
   if (result.status === "fresh") {
     console.log(
-      `Status: up-to-date (${result.currentFingerprint.fileCount} source files)`,
+      "Status: up-to-date " +
+        `(${result.currentFingerprint.algorithm})`,
     );
   } else if (result.status === "stale") {
     console.log("Status: stale (source fingerprint changed)");

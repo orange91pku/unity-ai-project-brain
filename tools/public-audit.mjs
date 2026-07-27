@@ -12,6 +12,8 @@ const repositoryRoot = path.resolve(
 const ignoredDirectories = new Set([
   ".git",
   ".gitnexus",
+  ".project-brain",
+  ".pytest_cache",
   ".state",
   "__pycache__",
   "coverage",
@@ -132,7 +134,10 @@ function visit(directory) {
   for (const entry of fs
     .readdirSync(directory, { withFileTypes: true })
     .sort((left, right) => left.name.localeCompare(right.name))) {
-    if (entry.isDirectory() && ignoredDirectories.has(entry.name)) {
+    if (
+      entry.isDirectory() &&
+      (ignoredDirectories.has(entry.name) || entry.name.endsWith(".egg-info"))
+    ) {
       continue;
     }
     const absolutePath = path.join(directory, entry.name);

@@ -18,8 +18,10 @@ workspace.
 | --- | --- |
 | `pnpm install --frozen-lockfile` | PASS, 252 packages |
 | Python editable install | PASS |
-| Node unit and CLI smoke tests | PASS, 11/11 |
+| Node unit and CLI smoke tests | PASS, 12/12 |
 | Python unit tests | PASS, 15/15 |
+| Full Git index freshness/staleness | PASS |
+| Focused source index freshness/staleness | PASS |
 | Synthetic Unity identity graph | PASS |
 | GUID to script resolution | PASS |
 | Component to code-symbol resolution | PASS |

@@ -67,6 +67,13 @@ pnpm run analyze -- --project my-unity-game
 pnpm run status -- --project my-unity-game
 ```
 
+After a successful analysis, Project Brain records its own freshness
+baseline. For a full index, the baseline covers the Git revision plus staged,
+modified, deleted, and untracked content. For a focused non-Git index, it
+covers the analyzed source tree. `status` compares the current project with
+that baseline and reports `up-to-date`, `stale`, or `missing baseline`
+without depending on upstream status output.
+
 To print an MCP descriptor:
 
 ```bash

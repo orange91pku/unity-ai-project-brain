@@ -4,7 +4,9 @@
 
 - Added project-scoped GitNexus orchestration and read-only MCP descriptors.
 - Added full and focused index configuration.
-- Added deterministic change envelopes and focused-index fingerprints.
+- Added deterministic change envelopes and full/focused index fingerprints.
+- Added Project Brain-managed freshness checks for Git revisions, dirty
+  worktrees, and focused source trees.
 - Added Unity GUID/fileID, scene, prefab, component, and asset graph.
 - Added optional Roslyn-compatible symbol identity bridge.
 - Added incremental graph planning and integrity gates.

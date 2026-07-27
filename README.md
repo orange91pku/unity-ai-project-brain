@@ -24,7 +24,8 @@ Version `0.1.0` includes:
 - project-scoped GitNexus orchestration;
 - full and focused indexes;
 - read-only, repository-restricted MCP descriptors;
-- deterministic source fingerprints for focused indexes;
+- deterministic Git revision/worktree fingerprints for full indexes;
+- deterministic source-tree fingerprints for focused indexes;
 - Unity `.meta`, scene, prefab, component, and asset-reference graph building;
 - optional Roslyn-compatible symbol-to-MonoScript identity links;
 - incremental Unity graph planning and integrity verification;
