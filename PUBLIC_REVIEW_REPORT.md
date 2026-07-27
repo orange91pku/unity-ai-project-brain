@@ -21,6 +21,8 @@ workspace.
 | Python distribution `unity-ai-project-brain` | PASS, wheel metadata/build/install |
 | Node unit and CLI smoke tests | PASS, 12/12 |
 | Python unit tests | PASS, 15/15 |
+| Registry dependency audit | PASS, 0 vulnerabilities |
+| GitNexus/native override compatibility probes | PASS |
 | Full Git index freshness/staleness | PASS |
 | Focused source index freshness/staleness | PASS |
 | Synthetic Unity identity graph | PASS |

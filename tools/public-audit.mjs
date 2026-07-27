@@ -34,6 +34,7 @@ const requiredFiles = [
   "config/projects.example.json",
   "docs/ARCHITECTURE.md",
   "docs/GETTING_STARTED.md",
+  "docs/SECURITY_OVERRIDES.md",
   "docs/UNITY_CLI.md",
   "llms.txt",
   "package.json",
@@ -118,6 +119,32 @@ if (
 if (packageDocument.dependencies?.gitnexus !== "1.6.9") {
   failures.push("GitNexus must be pinned exactly to 1.6.9");
 }
+const requiredSecurityOverrides = {
+  "@hono/node-server": "2.0.10",
+  "adm-zip": "0.6.0",
+  "brace-expansion": "5.0.8",
+  sharp: "0.35.0",
+};
+const workspaceConfiguration = fs.readFileSync(
+  path.join(repositoryRoot, "pnpm-workspace.yaml"),
+  "utf8",
+);
+for (const [packageName, expectedVersion] of Object.entries(
+  requiredSecurityOverrides,
+)) {
+  const escapedPackageName = escapeRegularExpression(packageName);
+  const escapedVersion = escapeRegularExpression(expectedVersion);
+  const overrideExpression = new RegExp(
+    `^\\s{2}['"]?${escapedPackageName}['"]?:\\s*` +
+      `['"]?${escapedVersion}['"]?\\s*$`,
+    "m",
+  );
+  if (!overrideExpression.test(workspaceConfiguration)) {
+    failures.push(
+      `security override ${packageName} must be pinned to ${expectedVersion}`,
+    );
+  }
+}
 if (fs.existsSync(path.join(repositoryRoot, ".git"))) {
   const tracked = trackedFiles();
   for (const forbiddenPath of forbiddenTrackedPaths) {
@@ -166,6 +193,10 @@ function looksBinary(filePath) {
 
 function normalize(value) {
   return value.replaceAll(path.sep, "/");
+}
+
+function escapeRegularExpression(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function trackedFiles() {

@@ -13,3 +13,5 @@
 - Added evidence storage and read-only Context API.
 - Added public schemas, documentation, license notices, and publication audit.
 - Added Node 24-compatible GitHub Actions for warning-free public CI.
+- Pinned patched transitive dependencies for four upstream security
+  advisories and added compatibility gates.

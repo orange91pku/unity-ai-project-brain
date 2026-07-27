@@ -16,3 +16,9 @@ allowBuilds:
   tree-sitter-ruby: true
   tree-sitter-rust: true
   tree-sitter-typescript: true
+
+overrides:
+  '@hono/node-server': 2.0.10
+  adm-zip: 0.6.0
+  brace-expansion: 5.0.8
+  sharp: 0.35.0
