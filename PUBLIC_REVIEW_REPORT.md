@@ -7,7 +7,9 @@ Generated: 2026-07-27
 - Product: Unity Project Brain
 - Version: `0.1.0`
 - Public workspace: independent clean export
-- Publication state: local review candidate; no remote configured
+- Publication state: published and independently accessible
+- Repository: <https://github.com/orange91pku/unity-ai-project-brain>
+- Release: <https://github.com/orange91pku/unity-ai-project-brain/releases/tag/v0.1.0>
 
 ## Automated evidence
 
@@ -35,6 +37,10 @@ workspace.
 | Context API `uses` | PASS |
 | Public path/private identifier audit | PASS |
 | AI discovery map (`AGENTS.md`, `llms.txt`) | PASS |
+| GitHub Actions frozen-install verification | PASS |
+| GitHub Dependabot open alerts | PASS, 0 |
+| Anonymous repository/release/raw access | PASS, HTTP 200 |
+| Protected `main` required check | PASS, `test` |
 
 Synthetic graph fingerprint:
 
@@ -70,16 +76,19 @@ Excluded:
 - GitNexus license: PolyForm Noncommercial 1.0.0.
 - Upstream source is not copied into this repository.
 
-The owner must confirm the intended use is compatible with the upstream
-noncommercial license before publication.
+The owner accepted the Apache-2.0 Project Brain license, the `NOTICE`
+attribution, and the separate GitNexus PolyForm Noncommercial dependency
+boundary for the intended public release.
 
-## Owner decisions before push
+## Publication outcome
 
-1. Accept or change Apache-2.0.
-2. Confirm the copyright line in `NOTICE`.
-3. Configure a private security-reporting channel on the public host.
-4. Accept the GitNexus PolyForm Noncommercial dependency boundary.
-5. Choose the final repository name and description.
+- Canonical repository: `orange91pku/unity-ai-project-brain`.
+- Release commit: `8440b659fde8c20ddd7babcfb5852b0d46635f08`.
+- Release tag: `v0.1.0`.
+- GitHub Actions run: `30280520040`, PASS.
+- Release source archive SHA-256:
+  `DBAE602A4A444EED25582F1A249D4F2DEC79927706208EA488FD8CEF8DF6E33F`.
+- Private vulnerability reporting, secret scanning, push protection,
+  Dependabot security updates, and protected `main` are enabled.
 
-No technical gate is currently failing. Publication remains intentionally
-paused for owner review and remote-repository approval.
+No publication gate is failing.
