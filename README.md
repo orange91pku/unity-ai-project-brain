@@ -1,9 +1,13 @@
 # Unity Project Brain
 
-Unity Project Brain is an AI-first, local intelligence layer for real Unity
-repositories. It combines a GitNexus code graph with Unity GUID/fileID,
-scene, prefab, GameObject, component, optional Roslyn symbol, evidence, and Git
-history relationships behind a read-only Context API.
+[![verify](https://github.com/orange91pku/unity-ai-project-brain/actions/workflows/ci.yml/badge.svg)](https://github.com/orange91pku/unity-ai-project-brain/actions/workflows/ci.yml)
+[![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+
+Unity Project Brain is an open-source AI context engine and local project
+intelligence layer for real Unity repositories. It combines a GitNexus code
+graph with Unity GUID/fileID, scene, prefab, GameObject, component, optional
+Roslyn symbol, runtime evidence, and Git history relationships behind
+read-only MCP and Context API surfaces for AI coding agents.
 
 The project helps an AI answer questions such as:
 

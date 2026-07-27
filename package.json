@@ -1,10 +1,30 @@
 {
-  "name": "unity-project-brain",
+  "name": "unity-ai-project-brain",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "AI-first, project-scoped GitNexus orchestration for Unity repositories.",
+  "description": "Open-source AI context engine for Unity projects with GitNexus, GUID/fileID graphs, Roslyn symbols, and a read-only Context API.",
+  "keywords": [
+    "unity",
+    "unity3d",
+    "ai-agents",
+    "mcp",
+    "code-intelligence",
+    "context-engine",
+    "knowledge-graph",
+    "rag",
+    "gitnexus",
+    "roslyn"
+  ],
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orange91pku/unity-ai-project-brain.git"
+  },
+  "homepage": "https://github.com/orange91pku/unity-ai-project-brain#readme",
+  "bugs": {
+    "url": "https://github.com/orange91pku/unity-ai-project-brain/issues"
+  },
   "engines": {
     "node": ">=22.15.0"
   },

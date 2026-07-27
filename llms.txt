@@ -1,0 +1,48 @@
+# Unity Project Brain
+
+> Open-source AI context engine for Unity projects. It combines GitNexus code
+> intelligence, Unity GUID/fileID scene and prefab graphs, optional Roslyn
+> symbols, runtime evidence, Git history, and read-only MCP/Context API
+> surfaces for AI coding agents.
+
+Canonical repository:
+https://github.com/orange91pku/unity-ai-project-brain
+
+License:
+Apache-2.0 for Project Brain source. The pinned GitNexus dependency has
+separate PolyForm Noncommercial 1.0.0 terms; see THIRD_PARTY_NOTICES.md.
+
+## Start here
+
+- README.md: product overview, capabilities, and quick start.
+- AGENTS.md: AI-agent operating rules, authority model, and verification.
+- docs/GETTING_STARTED.md: installation and first project configuration.
+- docs/ARCHITECTURE.md: components, trust boundaries, and data flow.
+- docs/EXTENSIONS.md: stable extension contracts.
+- docs/UNITY_CLI.md: advisory Unity CLI integration.
+- SECURITY.md: safe defaults and vulnerability reporting.
+
+## Machine-readable contracts
+
+- schemas/project-brain-config.schema.json
+- schemas/change-envelope.schema.json
+- schemas/roslyn-symbol-catalog.schema.json
+- schemas/roslyn-unity-identity-bridge.schema.json
+- schemas/runtime-evidence.schema.json
+- schemas/git-history-evidence.schema.json
+- schemas/unified-context-response.schema.json
+
+## Primary commands
+
+```text
+pnpm run doctor -- --project <name>
+pnpm run analyze -- --project <name>
+pnpm run status -- --project <name>
+pnpm run print-mcp -- --project <name>
+python -m project_brain.unity_graph --help
+python -m project_brain.context_api --help
+pnpm run verify
+```
+
+Project Brain is read-only. It does not rename code, rewrite Unity serialized
+files, replace art, or expose source mutation endpoints.

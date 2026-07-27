@@ -18,6 +18,7 @@ workspace.
 | --- | --- |
 | `pnpm install --frozen-lockfile` | PASS, 252 packages |
 | Python editable install | PASS |
+| Python distribution `unity-ai-project-brain` | PASS, wheel metadata/build/install |
 | Node unit and CLI smoke tests | PASS, 12/12 |
 | Python unit tests | PASS, 15/15 |
 | Full Git index freshness/staleness | PASS |
@@ -31,6 +32,7 @@ workspace.
 | Context API `resolve` | PASS |
 | Context API `uses` | PASS |
 | Public path/private identifier audit | PASS |
+| AI discovery map (`AGENTS.md`, `llms.txt`) | PASS |
 
 Synthetic graph fingerprint:
 

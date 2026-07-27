@@ -25,6 +25,7 @@ const ignoredFiles = new Set([
 ]);
 const requiredFiles = [
   ".gitignore",
+  "AGENTS.md",
   "LICENSE",
   "NOTICE",
   "README.md",
@@ -34,6 +35,7 @@ const requiredFiles = [
   "docs/ARCHITECTURE.md",
   "docs/GETTING_STARTED.md",
   "docs/UNITY_CLI.md",
+  "llms.txt",
   "package.json",
   "schemas/change-envelope.schema.json",
   "schemas/project-brain-config.schema.json",
@@ -103,6 +105,15 @@ const packageDocument = JSON.parse(
 );
 if (packageDocument.license !== "Apache-2.0") {
   failures.push("package.json must declare Apache-2.0");
+}
+if (packageDocument.name !== "unity-ai-project-brain") {
+  failures.push("package.json must use the public distribution name");
+}
+if (
+  packageDocument.repository?.url !==
+  "git+https://github.com/orange91pku/unity-ai-project-brain.git"
+) {
+  failures.push("package.json must use the canonical public repository");
 }
 if (packageDocument.dependencies?.gitnexus !== "1.6.9") {
   failures.push("GitNexus must be pinned exactly to 1.6.9");
