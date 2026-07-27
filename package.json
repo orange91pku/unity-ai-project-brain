@@ -40,6 +40,7 @@
     "status": "node src/cli.mjs status",
     "mcp": "node src/cli.mjs mcp",
     "print-mcp": "node src/cli.mjs print-mcp",
+    "export-visual-context": "python -m project_brain.visual_context export",
     "plan-change": "node src/change-envelope-cli.mjs",
     "smoke:fixture": "python tools/smoke-fixture.py",
     "audit:public": "node tools/public-audit.mjs",

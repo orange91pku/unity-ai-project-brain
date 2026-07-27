@@ -136,6 +136,22 @@ theme catalog, mappings, A/B evidence, and reskin transactions.
 The two systems exchange stable IDs and versioned JSON. Neither reads the
 other's database directly.
 
+Export a Visual RAG context after building and validating the Unity graph:
+
+```bash
+python -m project_brain.visual_context export \
+  --graph .project-brain/unity-graph.sqlite \
+  --repository /absolute/path/to/repository \
+  --unity-project /absolute/path/to/repository/UnityProject \
+  --project-id studio.game \
+  --output .project-brain/visual-context.json
+```
+
+The exporter is read-only. It emits asset content hashes plus exact GUID,
+fileID, owner asset, component and GameObject hierarchy evidence using
+`hydracore.project-brain.visual-context/v1`. ReVisualReskin may consume that
+file, but it never receives direct database access or mutation authority.
+
 ## Licensing
 
 The Project Brain code in this repository is licensed under Apache-2.0.

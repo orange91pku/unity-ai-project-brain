@@ -144,3 +144,21 @@ pnpm run plan-change -- \
 
 The plan reports affected paths, invalidated graph partitions, required
 reindexing, and downstream Unity graph actions. It does not mutate source.
+
+## 9. Export context for Visual RAG
+
+After `unity_graph validate` passes:
+
+```bash
+python -m project_brain.visual_context export \
+  --graph .project-brain/unity-graph.sqlite \
+  --repository /absolute/path/to/repository \
+  --unity-project /absolute/path/to/repository/UnityProject \
+  --project-id studio.game \
+  --output .project-brain/visual-context.json
+```
+
+The output conforms to `schemas/visual-context.schema.json`. It contains image
+asset GUIDs and hashes plus aggregated owner, fileID, component and hierarchy
+usage evidence. The output is context only and cannot authorize Unity
+mutation.

@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Added the versioned `hydracore.project-brain.visual-context/v1` exporter for
+  specialist visual applications.
+- Added exact Unity GUID/fileID, owner asset, component and GameObject hierarchy
+  usage evidence without exposing or coupling the Project Brain database.
+- Added a public JSON schema and a synthetic connector fixture.
+
 ## 0.1.0
 
 - Added project-scoped GitNexus orchestration and read-only MCP descriptors.

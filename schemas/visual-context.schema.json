@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hydracore.dev/schemas/project-brain-visual-context.schema.json",
+  "title": "Project Brain Visual Context v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "projectId",
+    "indexFingerprint",
+    "generatedUtc",
+    "source",
+    "assets",
+    "usages",
+    "warnings",
+    "summary"
+  ],
+  "properties": {
+    "schema": { "const": "hydracore.project-brain.visual-context/v1" },
+    "projectId": { "type": "string", "minLength": 1 },
+    "indexFingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "generatedUtc": { "type": "string", "format": "date-time" },
+    "source": { "type": "object" },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "assetId",
+          "unityGuid",
+          "relativePath",
+          "contentHash",
+          "assetKind"
+        ],
+        "properties": {
+          "assetId": { "type": "string" },
+          "unityGuid": { "type": "string", "pattern": "^[0-9a-f]{32}$" },
+          "relativePath": { "type": "string" },
+          "contentHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "assetKind": { "type": "string" }
+        }
+      }
+    },
+    "usages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "unityGuid",
+          "fileId",
+          "ownerPath",
+          "hierarchyPath",
+          "componentType",
+          "propertyName",
+          "referenceCount"
+        ],
+        "properties": {
+          "unityGuid": { "type": "string", "pattern": "^[0-9a-f]{32}$" },
+          "fileId": { "type": "string" },
+          "ownerPath": { "type": "string" },
+          "hierarchyPath": { "type": ["string", "null"] },
+          "componentType": { "type": ["string", "null"] },
+          "propertyName": { "type": ["string", "null"] },
+          "referenceCount": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "warnings": { "type": "array", "items": { "type": "object" } },
+    "summary": {
+      "type": "object",
+      "required": [
+        "visualAssets",
+        "usageRecords",
+        "references",
+        "unresolvedFileIds"
+      ]
+    }
+  },
+  "additionalProperties": false
+}
