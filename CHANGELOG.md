@@ -12,3 +12,4 @@
 - Added incremental graph planning and integrity gates.
 - Added evidence storage and read-only Context API.
 - Added public schemas, documentation, license notices, and publication audit.
+- Added Node 24-compatible GitHub Actions for warning-free public CI.
