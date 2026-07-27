@@ -1,0 +1,22 @@
+{
+  "name": "com.heycici.project-brain",
+  "version": "0.2.0",
+  "displayName": "Unity AI Project Brain",
+  "description": "Read-only Unity Editor bridge for Unity AI Project Brain context, identity and backend bootstrap workflows.",
+  "unity": "6000.3",
+  "documentationUrl": "https://github.com/orange91pku/unity-ai-project-brain/blob/main/docs/UPM_INSTALL.md",
+  "changelogUrl": "https://github.com/orange91pku/unity-ai-project-brain/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/orange91pku/unity-ai-project-brain/blob/main/LICENSE",
+  "keywords": [
+    "ai",
+    "context",
+    "gitnexus",
+    "guid",
+    "mcp",
+    "unity"
+  ],
+  "author": {
+    "name": "HeyCici",
+    "url": "https://github.com/orange91pku"
+  }
+}

@@ -23,8 +23,10 @@ must pass Unity verification before their results become trusted evidence.
 
 ## Current public release
 
-Version `0.1.0` includes:
+Version `0.2.0` includes:
 
+- the `com.heycici.project-brain` read-only Unity Editor bridge;
+- no-clone Unity Package Manager and tagged Python backend installation;
 - project-scoped GitNexus orchestration;
 - full and focused indexes;
 - read-only, repository-restricted MCP descriptors;
@@ -37,6 +39,7 @@ Version `0.1.0` includes:
 - an evidence store with provenance and confidence;
 - a read-only CLI and loopback HTTP Context API;
 - public data schemas and privacy gates.
+- a versioned Visual RAG context exporter for specialist applications.
 
 GitNexus method-call edges are not yet imported into the unified SQLite Unity
 graph. Use the GitNexus MCP surface for code impact and the Context API for
@@ -65,15 +68,55 @@ serialized files remain authoritative for GUID/fileID relationships, Git
 remains authoritative for history, and verification reports remain
 independent evidence.
 
+## Install the Unity bridge
+
+Unity users do **not** need to clone this repository. In
+**Window > Package Management > Package Manager**, select
+**Install package from Git URL** and paste:
+
+```text
+https://github.com/orange91pku/unity-ai-project-brain.git?path=/Packages/com.heycici.project-brain#v0.2.0
+```
+
+After Unity compiles, open **Tools > HeyCici > Project Brain**. See the
+[UPM installation guide](docs/UPM_INSTALL.md) for a project manifest example,
+updates, uninstall and backend setup.
+
 ## Requirements
 
 - Node.js `22.15` or newer
 - pnpm
 - Python `3.11` or newer
-- Git
+- Git `2.14+`
 - A Unity project using text serialization for full scene/prefab visibility
 
-## Quick start
+Node and pnpm are required only for GitNexus orchestration. Python is required
+only for the external identity graph and Context API. The Unity bridge has no
+runtime dependency on either.
+
+## Backend quick start without cloning
+
+Install the tagged Python backend directly from Git:
+
+```bash
+python -m pip install \
+  "unity-ai-project-brain @ git+https://github.com/orange91pku/unity-ai-project-brain.git@v0.2.0"
+```
+
+Build and validate the Unity identity graph:
+
+```bash
+python -m project_brain.unity_graph build \
+  --repository /absolute/path/to/my-unity-game \
+  --unity-project /absolute/path/to/my-unity-game/UnityProject \
+  --policy /absolute/path/to/index-policy.json \
+  --database /absolute/path/to/.project-brain/unity-graph.sqlite
+
+python -m project_brain.unity_graph validate \
+  --database /absolute/path/to/.project-brain/unity-graph.sqlite
+```
+
+## Source-development quick start
 
 ```bash
 pnpm install --frozen-lockfile
@@ -90,7 +133,7 @@ pnpm run status -- --project my-unity-game
 pnpm run print-mcp -- --project my-unity-game
 ```
 
-Build and validate the Unity identity graph:
+Build and validate the Unity identity graph from the development checkout:
 
 ```bash
 python -m project_brain.unity_graph build \

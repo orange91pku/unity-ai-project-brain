@@ -26,12 +26,15 @@
 - [x] GitNexus descriptor is read-only and scoped.
 - [x] Unity graph clean build and validation pass on the synthetic fixture.
 - [x] Context API binds to loopback by default.
+- [x] UPM package name, version, GUID metadata and pinned install URL validate.
+- [x] Unity Editor bridge remains read-only and starts no external process.
 
 ## Documentation
 
 - [x] README accurately separates implemented features and roadmap.
 - [x] Getting-started commands are reproduced in an independent clean export.
 - [x] Unity CLI guide links to current official documentation.
+- [x] UPM guide documents install, update, uninstall and backend boundaries.
 - [x] Private vulnerability reporting is configured on GitHub.
 - [x] Contribution and extension contracts are reviewed.
 

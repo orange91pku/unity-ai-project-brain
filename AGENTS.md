@@ -40,6 +40,8 @@ history so AI agents can reason about a project before proposing changes.
 - `schemas/`: public interoperability contracts.
 - `docs/ARCHITECTURE.md`: system boundaries and data flow.
 - `docs/GETTING_STARTED.md`: reproducible setup.
+- `docs/UPM_INSTALL.md`: no-clone Unity package distribution.
+- `Packages/com.heycici.project-brain/`: read-only Unity Editor bridge.
 
 ## Verification
 
@@ -52,7 +54,8 @@ pnpm run verify
 ```
 
 `pnpm run verify` must pass the Node tests, Python tests, synthetic Unity graph
-smoke test, integrity checks, Context API checks, and public privacy audit.
+smoke test, integrity checks, Context API checks, UPM contract validation, and
+public privacy audit.
 
 ## Contribution priorities
 

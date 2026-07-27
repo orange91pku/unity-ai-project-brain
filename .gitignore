@@ -4,6 +4,8 @@ node_modules/
 .state/
 config/projects.local.json
 coverage/
+build/
+dist/
 *.log
 *.tmp
 .DS_Store

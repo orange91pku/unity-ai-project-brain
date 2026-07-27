@@ -17,6 +17,7 @@ separate PolyForm Noncommercial 1.0.0 terms; see THIRD_PARTY_NOTICES.md.
 - README.md: product overview, capabilities, and quick start.
 - AGENTS.md: AI-agent operating rules, authority model, and verification.
 - docs/GETTING_STARTED.md: installation and first project configuration.
+- docs/UPM_INSTALL.md: no-clone Unity Package Manager and backend installation.
 - docs/ARCHITECTURE.md: components, trust boundaries, and data flow.
 - docs/EXTENSIONS.md: stable extension contracts.
 - docs/UNITY_CLI.md: advisory Unity CLI integration.
@@ -31,6 +32,13 @@ separate PolyForm Noncommercial 1.0.0 terms; see THIRD_PARTY_NOTICES.md.
 - schemas/runtime-evidence.schema.json
 - schemas/git-history-evidence.schema.json
 - schemas/unified-context-response.schema.json
+- schemas/visual-context.schema.json
+
+## Unity package
+
+- Package ID: com.heycici.project-brain
+- Package root: Packages/com.heycici.project-brain/
+- Menu: Tools > HeyCici > Project Brain
 
 ## Primary commands
 
