@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unity-project-brain"
+version = "0.1.0"
+description = "Unity GUID graph, evidence store, and Context API for AI agents."
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+
+[tool.setuptools.packages.find]
+include = ["project_brain*"]

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:unity-project-brain:schema:config:v1",
+  "title": "Project Brain configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "projects"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "projects": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/project"
+      }
+    }
+  },
+  "$defs": {
+    "absolutePath": {
+      "type": "string",
+      "minLength": 1,
+      "description": "An absolute path valid on the host operating system."
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "repositoryPath",
+        "unityProjectPath"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "repositoryPath": {
+          "$ref": "#/$defs/absolutePath"
+        },
+        "analysisPath": {
+          "$ref": "#/$defs/absolutePath"
+        },
+        "unityProjectPath": {
+          "$ref": "#/$defs/absolutePath"
+        },
+        "embeddings": {
+          "type": "boolean"
+        },
+        "generateSkills": {
+          "type": "boolean",
+          "default": false
+        },
+        "readOnlyMcp": {
+          "type": "boolean",
+          "default": true
+        },
+        "skipGit": {
+          "type": "boolean"
+        },
+        "indexOnly": {
+          "type": "boolean"
+        },
+        "indexName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "maxResponseTokens": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

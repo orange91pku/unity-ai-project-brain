@@ -1,0 +1,25 @@
+%YAML 1.1
+--- !u!1 &1
+GameObject:
+  m_Component:
+  - component: {fileID: 2}
+  - component: {fileID: 3}
+  m_Name: Player Root
+--- !u!4 &2
+Transform:
+  m_GameObject: {fileID: 1}
+  m_Father: {fileID: 0}
+--- !u!114 &3
+MonoBehaviour:
+  m_GameObject: {fileID: 1}
+  m_Script: {fileID: 11500000, guid: 11111111111111111111111111111111, type: 3}
+  m_Name:
+--- !u!1 &4
+GameObject:
+  m_Component:
+  - component: {fileID: 5}
+  m_Name: Child
+--- !u!4 &5
+Transform:
+  m_GameObject: {fileID: 4}
+  m_Father: {fileID: 2}

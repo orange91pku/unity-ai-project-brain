@@ -1,0 +1,28 @@
+{
+  "$schema": "../schemas/project-brain-config.schema.json",
+  "schemaVersion": 1,
+  "projects": [
+    {
+      "name": "my-unity-game",
+      "repositoryPath": "/absolute/path/to/my-unity-game",
+      "unityProjectPath": "/absolute/path/to/my-unity-game/UnityProject",
+      "embeddings": false,
+      "generateSkills": false,
+      "readOnlyMcp": true,
+      "maxResponseTokens": 6000
+    },
+    {
+      "name": "my-unity-game-code",
+      "repositoryPath": "/absolute/path/to/my-unity-game",
+      "analysisPath": "/absolute/path/to/my-unity-game/UnityProject/Assets/Scripts",
+      "unityProjectPath": "/absolute/path/to/my-unity-game/UnityProject",
+      "embeddings": true,
+      "skipGit": true,
+      "indexName": "my-unity-game-code",
+      "indexOnly": true,
+      "generateSkills": false,
+      "readOnlyMcp": true,
+      "maxResponseTokens": 6000
+    }
+  ]
+}

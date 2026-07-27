@@ -1,0 +1,31 @@
+{
+  "name": "unity-project-brain",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AI-first, project-scoped GitNexus orchestration for Unity repositories.",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.15.0"
+  },
+  "bin": {
+    "project-brain": "src/cli.mjs"
+  },
+  "scripts": {
+    "test": "pnpm run test:node && pnpm run test:python",
+    "test:node": "node --test",
+    "test:python": "python -m unittest discover -s python_tests -p \"test_*.py\"",
+    "doctor": "node src/cli.mjs doctor",
+    "analyze": "node src/cli.mjs analyze",
+    "status": "node src/cli.mjs status",
+    "mcp": "node src/cli.mjs mcp",
+    "print-mcp": "node src/cli.mjs print-mcp",
+    "plan-change": "node src/change-envelope-cli.mjs",
+    "smoke:fixture": "python tools/smoke-fixture.py",
+    "audit:public": "node tools/public-audit.mjs",
+    "verify": "pnpm run test && pnpm run smoke:fixture && pnpm run audit:public"
+  },
+  "dependencies": {
+    "gitnexus": "1.6.9"
+  }
+}

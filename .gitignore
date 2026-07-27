@@ -1,0 +1,14 @@
+node_modules/
+.gitnexus/
+.project-brain/
+.state/
+config/projects.local.json
+coverage/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/

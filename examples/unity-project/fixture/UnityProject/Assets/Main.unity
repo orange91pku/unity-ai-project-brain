@@ -1,0 +1,9 @@
+%YAML 1.1
+--- !u!1001 &20
+PrefabInstance:
+  m_SourcePrefab: {fileID: 100100000, guid: 22222222222222222222222222222222, type: 3}
+--- !u!1 &10 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1, guid: 22222222222222222222222222222222, type: 3}
+  m_PrefabInstance: {fileID: 20}
+  m_Name: Player Instance

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "name": "unity-project-default",
+  "exclude": {
+    "directoryNames": [
+      ".git",
+      ".gitnexus",
+      ".project-brain",
+      "Library",
+      "Logs",
+      "Temp",
+      "UserSettings",
+      "node_modules",
+      "obj"
+    ],
+    "pathPrefixes": [
+      "Build",
+      "Builds",
+      "Packages/PackageCache"
+    ]
+  },
+  "lanes": {
+    "code": {
+      "extensions": [
+        ".asmdef",
+        ".cs"
+      ]
+    },
+    "unitySerialized": {
+      "extensions": [
+        ".asset",
+        ".controller",
+        ".mat",
+        ".prefab",
+        ".unity"
+      ]
+    },
+    "assetIdentity": {
+      "extensions": [
+        ".meta"
+      ]
+    },
+    "projectConfiguration": {
+      "extensions": [
+        ".json",
+        ".yaml",
+        ".yml"
+      ]
+    }
+  },
+  "gates": {
+    "forbiddenAcceptedDirectoryNames": [
+      "Library",
+      "PackageCache",
+      "Temp"
+    ]
+  }
+}

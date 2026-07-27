@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:unity-project-brain:schema:change-envelope:v1",
+  "title": "Project Brain change envelope",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schemaVersion",
+    "envelopeId",
+    "source",
+    "changes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "envelopeId": {
+      "type": "string",
+      "pattern": "^change:[0-9a-f]{64}$"
+    },
+    "projectId": {
+      "type": "string"
+    },
+    "source": {
+      "enum": [
+        "git-diff",
+        "unity-asset-postprocessor",
+        "merged"
+      ]
+    },
+    "generatedUtc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "baseRevision": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "targetRevision": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "path",
+          "invalidates"
+        ],
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "oldPath": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "unityGuid": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{32}$"
+          },
+          "contentHash": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "lane": {
+            "type": "string"
+          },
+          "invalidates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        }
+      }
+    }
+  }
+}

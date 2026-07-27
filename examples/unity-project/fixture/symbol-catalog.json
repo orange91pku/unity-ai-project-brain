@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "keyFormat": "roslyn-public-semantic-v1",
+  "roslynVersion": "fixture",
+  "symbols": [
+    {
+      "symbolId": "roslyn:player",
+      "roslynKey": "doc-v1:Assembly-CSharp:T:Player",
+      "documentationId": "T:Player",
+      "kind": "Type",
+      "subkind": "Class",
+      "assemblyName": "Assembly-CSharp",
+      "name": "Player",
+      "qualifiedName": "Player",
+      "namespaceName": "",
+      "metadataName": "Player",
+      "containingSymbolId": null,
+      "containingRoslynKey": null,
+      "containingTypeMetadataName": null,
+      "accessibility": "Public",
+      "isStatic": false,
+      "isScriptFile": true,
+      "isUnityObject": true,
+      "isMonoBehaviour": true,
+      "isScriptableObject": false,
+      "isPartial": false,
+      "baseTypes": [
+        "global::UnityEngine.MonoBehaviour"
+      ],
+      "declarations": [
+        {
+          "projectRelativePath": "Assets/Scripts/Player.cs",
+          "line": 3,
+          "column": 21,
+          "spanStart": 20,
+          "spanLength": 6
+        }
+      ]
+    },
+    {
+      "symbolId": "roslyn:move",
+      "roslynKey": "doc-v1:Assembly-CSharp:M:Player.Move",
+      "documentationId": "M:Player.Move",
+      "kind": "Method",
+      "subkind": "Ordinary",
+      "assemblyName": "Assembly-CSharp",
+      "name": "Move",
+      "qualifiedName": "Player.Move()",
+      "namespaceName": "",
+      "metadataName": null,
+      "containingSymbolId": "roslyn:player",
+      "containingRoslynKey": "doc-v1:Assembly-CSharp:T:Player",
+      "containingTypeMetadataName": "Player",
+      "accessibility": "Public",
+      "isStatic": false,
+      "isScriptFile": false,
+      "isUnityObject": true,
+      "isMonoBehaviour": true,
+      "isScriptableObject": false,
+      "isPartial": false,
+      "baseTypes": [],
+      "declarations": [
+        {
+          "projectRelativePath": "Assets/Scripts/Player.cs",
+          "line": 5,
+          "column": 14,
+          "spanStart": 56,
+          "spanLength": 4
+        }
+      ]
+    }
+  ]
+}
