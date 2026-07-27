@@ -172,9 +172,10 @@ See [Getting started](docs/GETTING_STARTED.md),
 
 ## Related application
 
-ReVisualReskin is a separate project and database. It can consume Project Brain
-context to understand where UI and art are used, but owns its own Visual RAG,
-theme catalog, mappings, A/B evidence, and reskin transactions.
+[Unity AI Visual Reskin](https://github.com/orange91pku/unity-ai-visual-reskin)
+(ReVisualReskin) is a separate project and database. It can consume Project
+Brain context to understand where UI and art are used, but owns its own Visual
+RAG, theme catalog, mappings, A/B evidence, and reskin transactions.
 
 The two systems exchange stable IDs and versioned JSON. Neither reads the
 other's database directly.
