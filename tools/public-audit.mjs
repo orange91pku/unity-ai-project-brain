@@ -35,9 +35,12 @@ const requiredFiles = [
   "docs/ARCHITECTURE.md",
   "docs/GETTING_STARTED.md",
   "docs/SECURITY_OVERRIDES.md",
+  "docs/UPM_INSTALL.md",
   "docs/UNITY_CLI.md",
   "llms.txt",
   "package.json",
+  "Packages/com.heycici.project-brain/package.json",
+  "Packages/com.heycici.project-brain/Editor/ProjectBrainBridgeWindow.cs",
   "schemas/change-envelope.schema.json",
   "schemas/project-brain-config.schema.json",
 ];

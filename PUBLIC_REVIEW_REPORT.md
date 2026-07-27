@@ -5,11 +5,11 @@ Generated: 2026-07-27
 ## Candidate
 
 - Product: Unity Project Brain
-- Version: `0.1.0`
+- Version: `0.2.0`
 - Public workspace: independent clean export
 - Publication state: published and independently accessible
 - Repository: <https://github.com/orange91pku/unity-ai-project-brain>
-- Release: <https://github.com/orange91pku/unity-ai-project-brain/releases/tag/v0.1.0>
+- Release: <https://github.com/orange91pku/unity-ai-project-brain/releases/tag/v0.2.0>
 
 ## Automated evidence
 
@@ -22,7 +22,7 @@ workspace.
 | Python editable install | PASS |
 | Python distribution `unity-ai-project-brain` | PASS, wheel metadata/build/install |
 | Node unit and CLI smoke tests | PASS, 12/12 |
-| Python unit tests | PASS, 15/15 |
+| Python unit tests | PASS, 16/16 |
 | Registry dependency audit | PASS, 0 vulnerabilities |
 | GitNexus/native override compatibility probes | PASS |
 | Full Git index freshness/staleness | PASS |
@@ -35,6 +35,10 @@ workspace.
 | Graph fingerprint/integrity | PASS |
 | Context API `resolve` | PASS |
 | Context API `uses` | PASS |
+| Visual RAG context exporter | PASS |
+| UPM identity/version/URL/GUID validator | PASS |
+| Unity 6000.3 Editor bridge compile | PASS, exit code 0 |
+| Unity Editor bridge assembly | PASS, `HeyCici.ProjectBrain.Editor.dll` |
 | Public path/private identifier audit | PASS |
 | AI discovery map (`AGENTS.md`, `llms.txt`) | PASS |
 | GitHub Actions frozen-install verification | PASS |
@@ -58,6 +62,9 @@ Included:
 - optional Roslyn-compatible symbol bridge;
 - incremental graph and change envelopes;
 - evidence store and read-only Context API;
+- `com.heycici.project-brain` read-only Unity Editor bridge;
+- tagged Git UPM installation without a manual repository clone;
+- versioned Visual RAG context export;
 - schemas, synthetic fixture, tests, and documentation.
 
 Excluded:
@@ -83,11 +90,11 @@ boundary for the intended public release.
 ## Publication outcome
 
 - Canonical repository: `orange91pku/unity-ai-project-brain`.
-- Release commit: `8440b659fde8c20ddd7babcfb5852b0d46635f08`.
-- Release tag: `v0.1.0`.
-- GitHub Actions run: `30280520040`, PASS.
-- Release source archive SHA-256:
-  `DBAE602A4A444EED25582F1A249D4F2DEC79927706208EA488FD8CEF8DF6E33F`.
+- Release tag: `v0.2.0`.
+- UPM package: `com.heycici.project-brain@0.2.0`.
+- The release tag is required to resolve to the verified `main` commit.
+- The protected `main` verification workflow is required to pass before the
+  release is accepted.
 - Private vulnerability reporting, secret scanning, push protection,
   Dependabot security updates, and protected `main` are enabled.
 

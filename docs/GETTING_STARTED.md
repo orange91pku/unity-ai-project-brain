@@ -1,6 +1,20 @@
 # Getting started
 
-## 1. Install prerequisites
+## 1. Install the Unity bridge
+
+Unity users can install the read-only bridge without cloning this repository:
+
+```text
+https://github.com/orange91pku/unity-ai-project-brain.git?path=/Packages/com.heycici.project-brain#v0.2.0
+```
+
+Use **Window > Package Management > Package Manager > Install package from Git
+URL**, then open **Tools > HeyCici > Project Brain**.
+
+See [UPM installation](UPM_INSTALL.md) for the manifest form, updates and
+uninstall instructions.
+
+## 2. Install backend prerequisites
 
 Install Node.js 22.15 or newer, pnpm, Python 3.11 or newer, and Git.
 
@@ -13,7 +27,20 @@ python --version
 git --version
 ```
 
-## 2. Install Project Brain
+## 3. Install the Python backend without cloning
+
+```bash
+python -m pip install \
+  "unity-ai-project-brain @ git+https://github.com/orange91pku/unity-ai-project-brain.git@v0.2.0"
+```
+
+This provides the Unity identity graph, evidence store, Context API and Visual
+RAG context exporter.
+
+## 4. Prepare a source-development checkout
+
+This step is needed only for GitNexus orchestration or Project Brain
+development:
 
 ```bash
 pnpm install --frozen-lockfile
@@ -23,7 +50,7 @@ python -m pip install -e .
 The npm install downloads the pinned `gitnexus@1.6.9` dependency. Review
 `THIRD_PARTY_NOTICES.md` before use.
 
-## 3. Configure a Unity repository
+## 5. Configure a Unity repository
 
 Copy the example:
 
@@ -46,7 +73,7 @@ Recommended configuration:
 - one full repository project for exact context and impact;
 - one focused `Assets/Scripts` project for faster semantic retrieval.
 
-## 4. Audit index input
+## 6. Audit index input
 
 ```bash
 python -m project_brain.index_audit \
@@ -59,7 +86,7 @@ Review accepted lanes and exclusions before building an index. Do not index
 Unity `Library`, package caches, builds, credentials, or irrelevant vendor
 content.
 
-## 5. Build the code graph
+## 7. Build the code graph
 
 ```bash
 pnpm run doctor -- --project my-unity-game
@@ -144,3 +171,21 @@ pnpm run plan-change -- \
 
 The plan reports affected paths, invalidated graph partitions, required
 reindexing, and downstream Unity graph actions. It does not mutate source.
+
+## 9. Export context for Visual RAG
+
+After `unity_graph validate` passes:
+
+```bash
+python -m project_brain.visual_context export \
+  --graph .project-brain/unity-graph.sqlite \
+  --repository /absolute/path/to/repository \
+  --unity-project /absolute/path/to/repository/UnityProject \
+  --project-id studio.game \
+  --output .project-brain/visual-context.json
+```
+
+The output conforms to `schemas/visual-context.schema.json`. It contains image
+asset GUIDs and hashes plus aggregated owner, fileID, component and hierarchy
+usage evidence. The output is context only and cannot authorize Unity
+mutation.

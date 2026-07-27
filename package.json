@@ -1,6 +1,6 @@
 {
   "name": "unity-ai-project-brain",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "Open-source AI context engine for Unity projects with GitNexus, GUID/fileID graphs, Roslyn symbols, and a read-only Context API.",
@@ -40,10 +40,12 @@
     "status": "node src/cli.mjs status",
     "mcp": "node src/cli.mjs mcp",
     "print-mcp": "node src/cli.mjs print-mcp",
+    "export-visual-context": "python -m project_brain.visual_context export",
     "plan-change": "node src/change-envelope-cli.mjs",
     "smoke:fixture": "python tools/smoke-fixture.py",
     "audit:public": "node tools/public-audit.mjs",
-    "verify": "pnpm run test && pnpm run smoke:fixture && pnpm run audit:public"
+    "verify:upm": "node tools/validate-upm.mjs",
+    "verify": "pnpm run test && pnpm run smoke:fixture && pnpm run verify:upm && pnpm run audit:public"
   },
   "dependencies": {
     "gitnexus": "1.6.9"
